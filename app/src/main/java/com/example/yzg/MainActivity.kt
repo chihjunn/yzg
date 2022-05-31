@@ -5,10 +5,9 @@ import android.graphics.Canvas
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.example.yzg.databinding.ActivityMainBinding
 import kotlinx.coroutines.*
 import kotlinx.android.synthetic.main.activity_main.*
-
+import com.example.yzg.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(){
 
@@ -23,7 +22,35 @@ class MainActivity : AppCompatActivity(){
         setContentView(binding.root)
 
 
+        binding.img.setOnClickListener(object:View.OnClickListener{
+            override fun onClick(p0: View?) {
+                check = !check
 
+
+                if(check==false){
+                    img.setImageResource(R.drawable.start)
+
+                }else{
+                    img.setImageResource(R.drawable.stop)
+
+                }
+
+
+            }
+
+        }
+        )
+
+        job = GlobalScope.launch(Dispatchers.Main) {
+            while (true) {
+                if(check) {
+                    val canvas: Canvas = binding.mysv.holder.lockCanvas()
+                    binding.mysv.drawSomething(canvas)
+                    binding.mysv.holder.unlockCanvasAndPost(canvas)
+                }
+                delay(25)
+            }
+        }
 
         //設定螢幕水平顯示
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
