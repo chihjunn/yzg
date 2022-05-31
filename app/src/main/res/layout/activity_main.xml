@@ -51,4 +51,14 @@
         app:srcCompat="@drawable/picture"
         app:layout_constraintHorizontal_chainStyle="spread"/>
 
+    <ImageView
+        android:id="@+id/img3"
+        android:layout_width="143dp"
+        android:layout_height="101dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/fly1"
+        tools:layout_editor_absoluteX="0dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
