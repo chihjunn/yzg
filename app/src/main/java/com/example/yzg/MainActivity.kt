@@ -5,9 +5,15 @@ import android.graphics.Canvas
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
+import com.bumptech.glide.annotation.GlideModule
+import com.bumptech.glide.module.AppGlideModule
 import kotlinx.coroutines.*
 import kotlinx.android.synthetic.main.activity_main.*
 import com.example.yzg.databinding.ActivityMainBinding
+
+@GlideModule
+public final class MyAppGlideModule : AppGlideModule()
 
 class MainActivity : AppCompatActivity(){
 
@@ -52,8 +58,18 @@ class MainActivity : AppCompatActivity(){
             }
         }
 
+        val img: ImageView = findViewById(R.id.img2)
+        GlideApp.with(this)
+            .load(R.drawable.picture)
+            .circleCrop()
+            .override(800, 600)
+            .into(img2)
+
         //設定螢幕水平顯示
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+
+
+
 
     }
 
